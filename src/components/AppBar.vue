@@ -4,11 +4,11 @@
       <i class="material-icons">menu</i>
     </button>
     <img class="logo" src="../assets/Logo.png" alt="Glade" />
-    <div class="spacer" />
+    <div class="app-bar__spacer" />
     <div class="app-bar__action-wrapper">
       <div class="app-bar__action-wrapper__search-box">
         <i class="material-icons">search</i>
-        <input type="text" class="app-bar__action-wrapper__search-box__input" />
+        <input type="text" />
       </div>
     </div>
   </div>
@@ -34,12 +34,16 @@ export default {
   left: 0;
   right: 0;
   border-bottom: 1px solid gray;
-  height: 56px;
+  height: $app-bar-height + px;
   z-index: $z-index-app-bar;
 
   &__hamburger {
     background-color: transparent;
     border-width: 0px;
+  }
+
+  &__spacer {
+    flex: 1;
   }
 
   &__action-wrapper {
@@ -54,24 +58,31 @@ export default {
       border-radius: 20px;
 
       &:focus-within {
+        border-width: 1px;
         border-color: $primary-main;
       }
 
-      &__input {
+      & input {
         outline: none;
         border: 0;
         position: relative;
         width: 0;
-        left: -10px;
-        /* z-index: -1; */
+        left: -16px;
+        background-color: transparent;
+        transition: width .2s;
 
         &:focus {
           width: 100px;
+          left: 0px;
         }
       }
     }
+  }
 
-    /* 2px solid #06bcff */
+  @media screen and (min-width: $breakpoint-sm + px) {
+    &__hamburger {
+      display: none;
+    }
   }
 }
 </style>

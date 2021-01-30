@@ -19,6 +19,9 @@ $error-dark: #a3001e;
 $error-main: #dc3545;
 $error-light: #ff6b70;
 $error-contrastText: #ffffff;
+$grey-light: rgba(0, 0, 0, 0.12);
+$grey-main: #6c757d;
+$grey-dark: #343a40;
 
 $htmlFontSize: 16;
 $fontFamily: "Roboto, Helvetica, Arial, sans-serif";
@@ -150,6 +153,7 @@ $breakpoint-lg: 1280;
 $breakpoint-xl: 1920;
 
 $drawer-width: 250;
+$app-bar-height: 56;
 
 :root {
   --blue: #007bff;
