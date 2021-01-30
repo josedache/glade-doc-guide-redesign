@@ -1,28 +1,99 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="app">
+    <app-bar :toggleDrawer="toggleDrawer" />
+    <drawer :visible="isDrawer" :onClose="toggleDrawer" />
+    <main class="app__main">
+      <div class="app__main__content">
+        <router-view />
+      </div>
+    </main>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import AppBar from "./components/AppBar.vue";
+import Drawer from "./components/Drawer.vue";
 
 export default {
-  name: 'App',
+  name: "App",
+  data: function () {
+    return {
+      isDrawer: false,
+    };
+  },
+  methods: {
+    toggleDrawer: function () {
+      this.isDrawer = !this.isDrawer;
+    },
+  },
   components: {
-    HelloWorld
-  }
-}
+    AppBar,
+    Drawer,
+  },
+};
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+<style lang="scss">
+@use 'utils' as *;
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.router-link-active {
+  color: $primary-main
+}
+
+.app {
+  @extend .body1;
+  font-family: Source Sans Pro, Lucida Grande, sans-serif;
+  overflow: hidden;
+  display: flex;
+
+  &__main {
+    margin-top: 56px;
+    flex: 1;
+
+    @media screen and (min-width: $breakpoint-md + px) {
+      margin-left: $drawer-width + px;
+      &__content {
+        max-width: $breakpoint-md + px;
+        margin: auto;
+      }
+    }
+
+    &__content {
+      padding: 16px;
+    }
+  }
+}
+
+.spacer {
+  flex: 1;
+}
+
+.logo {
+  width: 150px;
+}
+
+.section-title {
+  font-size: 3rem;
+  line-height: 1.167;
+  letter-spacing: 0em;
+  font-weight: bolder;
+}
+
+.section-subtitle {
+  font-weight: 400;
+  font-size: 1.5rem;
+  line-height: 1.334;
+  letter-spacing: 0em;
+  font-weight: bolder;
 }
 </style>
