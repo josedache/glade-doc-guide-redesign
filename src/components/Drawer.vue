@@ -1,32 +1,34 @@
 <template>
-  <div :class="['drawer', visible ? 'drawer--show' : '']">
-    <!-- <div class="drawer__scrim" @click="onClose" /> -->
-    <div class="drawer__header">
-      <button class="icon-button" @click="onClose">
-        <i class="material-icons">arrow_back</i>
-      </button>
-      <img class="logo" src="../assets/Logo.png" alt="Glade" />
-    </div>
+  <div>
+    <div class="drawer-scrim" v-show="visible" @click="onClose" />
+    <div :class="['drawer', visible ? 'drawer--show' : '']">
+      <div class="drawer__header">
+        <button class="icon-button" @click="onClose">
+          <i class="material-icons">arrow_back</i>
+        </button>
+        <img class="logo" src="../assets/Logo.png" alt="Glade" />
+      </div>
 
-    <div class="drawer__links">
-      <div
-        @click="onClose"
-        class="drawer__links__link"
-        v-for="{ name, path, children } in routes"
-        :key="name"
-      >
-        <router-link :to="path" class="nav-link">
-          <span>{{ name.toUpperCase() }}</span>
-        </router-link>
-        <div class="drawer__links__link__drop-down" v-if="children">
-          <router-link
-            v-for="{ name: subName, path: subPath } in children"
-            :key="subName"
-            :to="`${path}/${subPath}`"
-            class="nav-link"
-          >
-            <span>{{ subName }}</span>
+      <div class="drawer__links">
+        <div
+          @click="onClose"
+          class="drawer__links__link"
+          v-for="{ name, path, children } in routes"
+          :key="name"
+        >
+          <router-link :to="path" class="nav-link">
+            <span>{{ name.toUpperCase() }}</span>
           </router-link>
+          <div class="drawer__links__link__drop-down" v-if="children">
+            <router-link
+              v-for="{ name: subName, path: subPath } in children"
+              :key="subName"
+              :to="`${path}/${subPath}`"
+              class="nav-link"
+            >
+              <span>{{ subName }}</span>
+            </router-link>
+          </div>
         </div>
       </div>
     </div>
@@ -75,8 +77,8 @@ $width: 250px;
     top: 0;
   }
 
-  &__scrim {
-    background-color: black;
+  &-scrim {
+    background-color: rgba(0, 0, 0, 0.4);
     position: fixed;
     /* left: 0;
     right: 0; */
@@ -84,6 +86,7 @@ $width: 250px;
     width: 100%;
     height: 100%;
     /* bottom: 0; */
+    z-index: $z-index-drawer;
   }
 
   &--show {
@@ -110,6 +113,10 @@ $width: 250px;
     z-index: 0;
     margin-top: 56px;
     box-shadow: none;
+
+    &-scrim {
+      display: none;
+    }
 
     &__header {
       display: none;
