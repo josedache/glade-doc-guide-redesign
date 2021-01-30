@@ -195,9 +195,11 @@
 
 <script>
 import ApiParamTable from "../components/APIParamTable.vue";
+import CodeSnippet from '../components/CodeSnippet.vue';
 import GuideSection from "../components/GuideSection.vue";
+import Notice from '../components/Notice.vue';
 export default {
-  components: { GuideSection, ApiParamTable },
+  components: { GuideSection, ApiParamTable, Notice, CodeSnippet, },
   data: function () {
     return {
       links: ["Recurring Payment", "Installment Payment", "Split Payment"],

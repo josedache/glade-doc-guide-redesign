@@ -1,33 +1,49 @@
 <template>
-  <div :class="['drawer', visible ? 'drawer--show' : '']" @click.capture="onClose">
+  <div :class="['drawer', visible ? 'drawer--show' : '']">
     <!-- <div class="drawer__scrim" @click="onClose" /> -->
+    <div class="drawer__header">
+      <button class="icon-button" @click="onClose">
+        <i class="material-icons">arrow_back</i>
+      </button>
+      <img class="logo" src="../assets/Logo.png" alt="Glade" />
+    </div>
 
-    <router-link to="#" class="drawer__item"> Home </router-link>
-    <router-link to="#" class="drawer__item"> Guide </router-link>
-    <router-link to="#" class="drawer__item"> Api Reference </router-link>
-    <hr />
-    <router-link to="/account-setup" class="drawer__item"> Account Setup </router-link>
-    <router-link to="/prerequisites-requirements" class="drawer__item">
-      Prerequisites / Requirements
-    </router-link>
-    <router-link to="/glade-inline-checkout" class="drawer__item">
-      Glade Inline Checkout
-    </router-link>
-    <router-link to="/verify-transactions" class="drawer__item"> Verify Transactions </router-link>
-    <router-link to="/refund-transactions" class="drawer__item"> Refund Transactions </router-link>
-    <router-link to="/disputes" class="drawer__item"> Disputes </router-link>
-    <router-link to="/settlements" class="drawer__item"> Settlements </router-link>
-    <router-link to="/questions" class="drawer__item"> Questions? </router-link>
+    <div class="drawer__links">
+      <div
+        @click="onClose"
+        class="drawer__links__link"
+        v-for="{ name, path, children } in routes"
+        :key="name"
+      >
+        <router-link :to="path" class="nav-link">
+          <span>{{ name.toUpperCase() }}</span>
+        </router-link>
+        <div class="drawer__links__link__drop-down" v-if="children">
+          <router-link
+            v-for="{ name: subName, path: subPath } in children"
+            :key="subName"
+            :to="`${path}/${subPath}`"
+            class="nav-link"
+          >
+            <span>{{ subName }}</span>
+          </router-link>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+import { ROUTES } from "../router";
+
 export default {
+  name: "Drawer",
   props: ["visible", "onClose"],
-  data: function() {
+  data: function () {
     return {
-    }
-  }
+      routes: ROUTES,
+    };
+  },
 };
 </script>
 
@@ -37,7 +53,6 @@ export default {
 $width: 250px;
 
 .drawer {
-  padding: 16px 0px;
   width: $width;
   background-color: white;
   position: fixed;
@@ -45,6 +60,20 @@ $width: 250px;
   height: 100%;
   transform: translateX(-$width);
   z-index: $z-index-drawer;
+  transition: transform 0.2s;
+  box-shadow: $shadow16;
+  overflow-y: auto;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    height: $app-bar-height + px;
+    padding-left: 16px;
+    border-bottom: 1px solid $grey-light;
+    position: sticky;
+    background-color: white;
+    top: 0;
+  }
 
   &__scrim {
     background-color: black;
@@ -61,22 +90,30 @@ $width: 250px;
     transform: translateX(0);
   }
 
-  &__item {
-    @extend .subtitle1;
-    font-weight: bold;
-    display: block;
-    text-decoration: none;
-    color: $primary-contrastText;
-    padding: 8px;
-  }
-}
+  &__links {
+    padding: 16px;
+    padding-left: 0px;
 
-@media screen and (min-width: $breakpoint-sm + px) {
-  .drawer {
-    /* position: static; */
+    &__link {
+      & > .nav-link {
+        font-weight: bolder;
+      }
+
+      &__drop-down {
+        margin-left: 16px;
+      }
+    }
+  }
+
+  @media screen and (min-width: $breakpoint-sm + px) {
     transform: translateX(0);
     z-index: 0;
     margin-top: 56px;
+    box-shadow: none;
+
+    &__header {
+      display: none;
+    }
   }
 }
 </style>

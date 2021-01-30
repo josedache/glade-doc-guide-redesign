@@ -19,9 +19,9 @@
         <p>ON THIS PAGE</p>
         <ul>
           <li v-for="link in links" :key="link">
-            <router-link class="" :to="link | hashLink">
+            <a class="" :href="link | hashLink('#')">
               {{ link }}
-            </router-link>
+            </a>
           </li>
         </ul>
       </div>
@@ -45,8 +45,8 @@ export default {
     },
   },
   filters: {
-    hashLink: function (value) {
-      return `#${value.toLowerCase().replace(/\s/g, "-")}`;
+    hashLink: function (value, hash = '') {
+      return `${hash}${value.toLowerCase().replace(/\s/g, "-")}`;
     },
   },
 };

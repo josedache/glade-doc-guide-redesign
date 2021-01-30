@@ -1,6 +1,6 @@
 <template>
   <div class="app-bar">
-    <button class="app-bar__hamburger" @click="toggleDrawer">
+    <button class="app-bar__hamburger icon-button" @click="toggleDrawer">
       <i class="material-icons">menu</i>
     </button>
     <img class="logo" src="../assets/Logo.png" alt="Glade" />
@@ -33,14 +33,10 @@ export default {
   background-color: white;
   left: 0;
   right: 0;
-  border-bottom: 1px solid gray;
+  top: 0;
+  border-bottom: 1px solid $grey-light;
   height: $app-bar-height + px;
   z-index: $z-index-app-bar;
-
-  &__hamburger {
-    background-color: transparent;
-    border-width: 0px;
-  }
 
   &__spacer {
     flex: 1;
@@ -53,13 +49,17 @@ export default {
     &__search-box {
       display: flex;
       align-items: center;
-      padding: 8px;
-      border: 0px solid lightgray;
+      padding: 4px 8px;
+      border: 0px solid $grey-light;
       border-radius: 20px;
 
       &:focus-within {
         border-width: 1px;
         border-color: $primary-main;
+      }
+
+      & i {
+        color: $grey-main;
       }
 
       & input {
@@ -69,7 +69,7 @@ export default {
         width: 0;
         left: -16px;
         background-color: transparent;
-        transition: width .2s;
+        transition: width 0.2s;
 
         &:focus {
           width: 100px;
@@ -82,6 +82,23 @@ export default {
   @media screen and (min-width: $breakpoint-sm + px) {
     &__hamburger {
       display: none;
+    }
+    &__action-wrapper {
+      padding: 0px 16px;
+
+      &__search-box {
+
+        border-width: 1px;
+
+        & input {
+          position: static;
+          width: 100px;
+
+          &:focus {
+            width: 200px;
+          }
+        }
+      }
     }
   }
 }

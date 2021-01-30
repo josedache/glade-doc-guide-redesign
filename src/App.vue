@@ -46,19 +46,32 @@ body {
   box-sizing: border-box;
 }
 
+.nav-link {
+  @extend .body1;
+  display: block;
+  text-decoration: none;
+  color: $primary-contrastText;
+  padding: 12px 16px;
+  border-top-right-radius: 24px;
+  border-bottom-right-radius: 24px;
+
+  &:hover {
+    color: $grey-main;
+  }
+}
+
 .router-link-active {
-  color: $primary-main
+  color: $primary-main;
 }
 
 .app {
   @extend .body1;
   font-family: Source Sans Pro, Lucida Grande, sans-serif;
-  overflow: hidden;
-  display: flex;
+  /* overflow: hidden; */
+  /* display: flex; */
 
   &__main {
     margin-top: 56px;
-    flex: 1;
 
     @media screen and (min-width: $breakpoint-md + px) {
       margin-left: $drawer-width + px;
@@ -80,6 +93,12 @@ body {
 
 .logo {
   width: 150px;
+}
+
+.icon-button {
+  background-color: transparent;
+  border-width: 0px;
+  color: $grey-main;
 }
 
 .section-title {
