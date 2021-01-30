@@ -1,35 +1,39 @@
 <template>
-  <guide-section title="Account Setup" :links="links">
-    <guide-section title="Test Accounts" :isSub="true">
+  <document-section title="Account Setup" :links="links">
+    <document-section title="Test Accounts" :isSub="true">
       <ul>
-        <li>
-          <p>Merchant ID: GP0000001</p>
-          <p>Merchant Key: 123456789</p>
-        </li>
+        <li class="code">Merchant ID: GP0000001</li>
+        <li class="code">Merchant Key: 123456789</li>
       </ul>
-    </guide-section>
-    <guide-section title="Live Account" :isSub="true">
+    </document-section>
+    <document-section title="Live Account" :isSub="true">
       <p>
-        Sign up for a live account here: https://glade.ng (opens new window)You
-        can start accepting realtime payments with your live account. Create one
-        now. Your API Credentials are in Merchant Credentials on the dashboard.
+        Sign up for a live account here:
+        <a href="https://glade.ng" class="content-link">https://glade.ng</a>
+        You can start accepting realtime payments with your
+        live account. Create one now. Your API Credentials are in Merchant
+        Credentials on the dashboard.
       </p>
-    </guide-section>
-    <notice />
-    <guide-section title="Using the Glade Payment Services" :isSub="true">
+    </document-section>
+    <notice variant="warning">
+      Your Merchant Key should not be shared with a third party.
+    </notice>
+    <document-section title="Using the Glade Payment Services" :isSub="true">
       <p>
         The Glade inline checkout is the simplest and easiest way to start
         accepting payments on your platform. This payment solution provides a
         secure and convenient flow for users. Payments are processed on the go
         without having to navigate customers to another page to complete their
-        transactions. #
+        transactions.
       </p>
-    </guide-section>
-  </guide-section>
+    </document-section>
+  </document-section>
 </template>
 
 <script>
-import GuideSection from "../components/GuideSection.vue";
+import DocumentSection from "../components/DocumentSection.vue";
+import Notice from "../components/Notice.vue";
+
 export default {
   name: "AccountSetup",
   data: function () {
@@ -42,11 +46,11 @@ export default {
     };
   },
   components: {
-    GuideSection,
+    DocumentSection,
+    Notice,
   },
 };
 </script>
 
 <style lang="scss" scoped>
-/* @use '../utils' as *; */
 </style>

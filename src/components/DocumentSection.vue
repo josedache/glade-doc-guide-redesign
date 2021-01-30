@@ -1,19 +1,19 @@
 <template>
-  <div class="doc-section">
+  <div class="document-section">
     <p
       :id="title | hashLink"
-      :class="[isSub ? 'doc-section__subtitle' : 'doc-section__title']"
+      :class="[isSub ? 'document-section__subtitle' : 'document-section__title']"
     >
       {{ title }}
     </p>
-    <div :class="isSub ? '' : 'doc-section__content'">
+    <div :class="isSub ? '' : 'document-section__content'">
       <slot />
     </div>
-    <div class="doc-section__page-nav" v-if="!isSub">
+    <div class="document-section__page-nav" v-if="!isSub">
       <div
         :class="[
-          'doc-section__page-nav__sheet',
-          visible ? 'doc-section__page-nav__sheet--show' : '',
+          'document-section__page-nav__sheet',
+          visible ? 'document-section__page-nav__sheet--show' : '',
         ]"
       >
         <p>ON THIS PAGE</p>
@@ -25,7 +25,7 @@
           </li>
         </ul>
       </div>
-      <button class="doc-section__page-nav__fab" @click="toggleVisibility">
+      <button class="document-section__page-nav__fab" @click="toggleVisibility">
         <span class="material-icons">{{ visible ? "close" : "menu" }}</span>
       </button>
     </div>
@@ -34,7 +34,7 @@
 
 <script>
 export default {
-  name: "GuideSection",
+  name: "DocumentSection",
   props: ["title", "isSub", "links"],
   data: function () {
     return { visible: false };
@@ -55,7 +55,7 @@ export default {
 <style lang="scss">
 @use '../utils' as *;
 
-.doc-section {
+.document-section {
   &__title {
     @extend .h3;
     font-weight: bolder;

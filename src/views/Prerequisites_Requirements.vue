@@ -1,5 +1,5 @@
 <template>
-  <guide-section title="Prerequisites / Requirements" :links="links">
+  <document-section title="Prerequisites / Requirements" :links="links">
     <p>Pass the following with the header request made to the endpoint</p>
     <ol>
       <li>
@@ -19,7 +19,7 @@
       ready to receive payment.
     </notice>
 
-    <guide-section :isSub="true" title="HTTPS requirements">
+    <document-section :isSub="true" title="HTTPS requirements">
       <p>
         All requests to using the Checkout are made via a secure HTTPS
         connection. However, in order to protect yourself from certain forms of
@@ -29,16 +29,16 @@
         setup on a free SSL certificate your server to enable a secure HTTPS
         connection.
       </p>
-    </guide-section>
-  </guide-section>
+    </document-section>
+  </document-section>
 </template>
 
 <script>
-import GuideSection from "../components/GuideSection.vue";
+import DocumentSection from "../components/DocumentSection.vue";
 import Notice from "../components/Notice.vue";
 export default {
   components: {
-    GuideSection,
+    DocumentSection,
     Notice,
   },
   data: function () {

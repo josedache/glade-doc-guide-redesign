@@ -1,5 +1,8 @@
 <template>
-  <guide-section title="Glade Inline Checkout" :links="links">
+  <document-section title="Glade Inline Checkout" :links="links">
+    <div class="interface-gif">
+      <img src="../assets/card-payment.gif" alt="card-payment" />
+    </div>
     <p>
       The Inline Checkout solution provides quick access the API into any
       website, CMS, App or Platform. It requires an addon embed script.
@@ -62,12 +65,10 @@
       The Inline Checkout can also be configured for advance requirements like
       Recurring <a class="content-link">payment</a> ,
       <a href="" class="content-link">Split payment</a> and
-      <a href="" class="content-link"
-        >Installment payments</a
-      >
+      <a href="" class="content-link">Installment payments</a>
     </p>
 
-    <guide-section title="Recurring Payment" :isSub="true">
+    <document-section title="Recurring Payment" :isSub="true">
       <p>
         A recurring payment can be configured directly into the payment system
         that will be carried out automatically by our system and send the
@@ -106,9 +107,9 @@
     }
 });     '
       />
-    </guide-section>
+    </document-section>
 
-    <guide-section title="Installment Payment" :isSub="true">
+    <document-section title="Installment Payment" :isSub="true">
       <p>
         Installment payment allows you to collect payment in bit's to reach
         accumulate to a final amount.
@@ -177,9 +178,9 @@
         This will initiate a payment request on the set date when its a card
         transaction that was used to initiate the transaction.
       </notice>
-    </guide-section>
+    </document-section>
 
-    <guide-section title="Split Payment" :isSub="true">
+    <document-section title="Split Payment" :isSub="true">
       <p>
         With split payments you can decide how you want the settlements to be
         handled when you provide a service to a third party. Before you can
@@ -189,17 +190,18 @@
       </p>
 
       <api-param-table title="For Split" :data="split_params.data" />
-    </guide-section>
-  </guide-section>
+    </document-section>
+  </document-section>
 </template>
 
 <script>
 import ApiParamTable from "../components/APIParamTable.vue";
-import CodeSnippet from '../components/CodeSnippet.vue';
-import GuideSection from "../components/GuideSection.vue";
-import Notice from '../components/Notice.vue';
+import CodeSnippet from "../components/CodeSnippet.vue";
+import DocumentSection from "../components/DocumentSection.vue";
+import Notice from "../components/Notice.vue";
+
 export default {
-  components: { GuideSection, ApiParamTable, Notice, CodeSnippet, },
+  components: { ApiParamTable, Notice, CodeSnippet, DocumentSection },
   data: function () {
     return {
       links: ["Recurring Payment", "Installment Payment", "Split Payment"],
@@ -358,3 +360,16 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+.interface-gif {
+  border-radius: 8px;
+  overflow: hidden;
+  margin: auto;
+
+  & > img {
+    max-width: 100%;
+    vertical-align: middle;
+  }
+}
+</style>

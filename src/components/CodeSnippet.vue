@@ -26,12 +26,6 @@ export default {
   components: {
     PrismEditor,
   },
-  data() {
-    return {
-      // code:
-      //   '<script type="text/javascript" src="https://api.glade.ng/checkout.js" />',
-    };
-  },
   methods: {
     highlighter(code) {
       return highlight(code, languages.js);
@@ -57,6 +51,7 @@ export default {
     font-size: 14px;
     line-height: 1.5;
     padding: 16px;
+    border-radius: 8px;
   }
 }
 

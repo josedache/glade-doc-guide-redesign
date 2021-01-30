@@ -34,7 +34,7 @@ export default {
 </script>
 
 <style lang="scss">
-@use 'utils' as *;
+@use 'utils' as utils;
 
 html,
 body {
@@ -50,33 +50,38 @@ body {
   @extend .body1;
   display: block;
   text-decoration: none;
-  color: $primary-contrastText;
+  color: utils.$primary-contrastText;
   padding: 12px 16px;
   border-top-right-radius: 24px;
   border-bottom-right-radius: 24px;
 
   &:hover {
-    color: $grey-main;
+    color: utils.$grey-main;
   }
 }
 
+.content-link {
+  text-decoration: none;
+  color: utils.$primary-main;
+}
+
 .router-link-active {
-  color: $primary-main;
+  color: utils.$primary-main;
 }
 
 .app {
   @extend .body1;
   font-family: Source Sans Pro, Lucida Grande, sans-serif;
-  /* overflow: hidden; */
+  overflow: hidden;
   /* display: flex; */
 
   &__main {
     margin-top: 56px;
 
-    @media screen and (min-width: $breakpoint-md + px) {
-      margin-left: $drawer-width + px;
+    @media screen and (min-width: utils.$breakpoint-md + px) {
+      margin-left: utils.$drawer-width + px;
       &__content {
-        max-width: $breakpoint-md + px;
+        max-width: utils.$breakpoint-md + px;
         margin: auto;
       }
     }
@@ -98,21 +103,13 @@ body {
 .icon-button {
   background-color: transparent;
   border-width: 0px;
-  color: $grey-main;
+  color: utils.$grey-main;
 }
-
-.section-title {
-  font-size: 3rem;
-  line-height: 1.167;
-  letter-spacing: 0em;
-  font-weight: bolder;
-}
-
-.section-subtitle {
-  font-weight: 400;
-  font-size: 1.5rem;
-  line-height: 1.334;
-  letter-spacing: 0em;
-  font-weight: bolder;
+.code {
+  color: utils.$primary-dark;
+  padding: 0.25rem 0.5rem;
+  margin: 0;
+  background-color: rgba(27, 31, 35, 0.05);
+  border-radius: 3px;
 }
 </style>

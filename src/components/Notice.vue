@@ -1,7 +1,9 @@
 <template>
   <div :class="['note', variantClass.note]">
-    <div :class="['note__indicator', variantClass.indicator]" />
-    <span class="note__title h6">{{ title || "NOTE" }}</span>
+    <div class="note__title-wrapper">
+      <span class="material-icons">emoji_objects</span>
+      <span class="note__title-wrapper__title h6"> {{ title || "NOTE" }}</span>
+    </div>
     <slot />
   </div>
 </template>
@@ -27,8 +29,10 @@ $indicator-width: 8px;
 
 .note {
   position: relative;
-  padding: 16px $indicator-width * 3;
+  padding: 16px;
+  padding-top: 8px;
   margin: 16px 0;
+  border-radius: 8px;
 
   $note: &;
 
@@ -57,10 +61,15 @@ $indicator-width: 8px;
     }
   }
 
-  &__title {
-    font-weight: bolder;
-    display: block;
+  &__title-wrapper {
     margin: 16px 0px;
+    display: flex;
+    align-items: center;
+
+    &__title {
+      margin-left: 8px;
+      font-weight: bolder;
+    }
   }
 
   &__indicator {
