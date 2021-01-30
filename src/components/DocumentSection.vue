@@ -2,7 +2,9 @@
   <div class="document-section">
     <p
       :id="title | hashLink"
-      :class="[isSub ? 'document-section__subtitle' : 'document-section__title']"
+      :class="[
+        isSub ? 'document-section__subtitle' : 'document-section__title',
+      ]"
     >
       {{ title }}
     </p>
@@ -17,13 +19,14 @@
         ]"
       >
         <p>ON THIS PAGE</p>
-        <ul>
-          <li v-for="link in links" :key="link">
-            <a class="" :href="link | hashLink('#')">
-              {{ link }}
-            </a>
-          </li>
-        </ul>
+        <router-link
+          v-for="link in links"
+          :key="link"
+          class="document-section__page-nav__link nav-link"
+          :to="link | hashLink('#')"
+        >
+          {{ link }}
+        </router-link>
       </div>
       <button class="document-section__page-nav__fab" @click="toggleVisibility">
         <span class="material-icons">{{ visible ? "close" : "menu" }}</span>
@@ -45,7 +48,7 @@ export default {
     },
   },
   filters: {
-    hashLink: function (value, hash = '') {
+    hashLink: function (value, hash = "") {
       return `${hash}${value.toLowerCase().replace(/\s/g, "-")}`;
     },
   },
@@ -84,21 +87,30 @@ export default {
       width: 100%;
       background-color: white;
       display: none;
+      padding: 4px 16px;
 
       &--show {
         display: block;
       }
     }
 
+    &__link {
+      &.nav-link {
+        padding: 0px;
+      }
+    }
+
     &__fab {
       position: fixed;
-      width: 40px;
-      height: 40px;
+      width: 50px;
+      height: 50px;
       outline: none;
-      border-radius: 100;
+      border-radius: 100px;
+      border: none;
       bottom: 16px;
       right: 32px;
       box-shadow: $shadow16;
+      background-color: white;
     }
 
     @media screen and (min-width: $breakpoint-sm + px) {

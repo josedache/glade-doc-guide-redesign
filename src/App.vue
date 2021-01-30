@@ -40,6 +40,7 @@ html,
 body {
   padding: 0;
   margin: 0;
+  scroll-behavior: smooth;
 }
 
 * {
@@ -51,7 +52,7 @@ body {
   display: block;
   text-decoration: none;
   color: utils.$primary-contrastText;
-  padding: 12px 16px;
+  padding: 8px 16px;
   border-top-right-radius: 24px;
   border-bottom-right-radius: 24px;
 

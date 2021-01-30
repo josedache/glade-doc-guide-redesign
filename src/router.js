@@ -31,7 +31,7 @@ export const ROUTES = [
         name: "Prerequisites / Requirements",
         path: "prerequisites-requirements",
         component: Prerequisites_Requirements,
-        sections: [{name: "HTTPS requirements", path: 'https-requirements'}, ],
+        sections: [{ name: "HTTPS requirements", path: "https-requirements" }],
       },
       {
         name: "Glade Inline Checkout",
@@ -60,4 +60,11 @@ export const ROUTES = [
 export default new VueRouter({
   mode: "history",
   routes: ROUTES,
+  scrollBehavior: function(to) {
+    if (to.hash) {
+      return { selector: to.hash };
+    } else {
+      return { x: 0, y: 0 };
+    }
+  },
 });

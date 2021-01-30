@@ -104,6 +104,9 @@ $width: 250px;
 
       &__drop-down {
         margin-left: 16px;
+        & > a {
+          padding: 4px 16px;
+        }
       }
     }
   }
